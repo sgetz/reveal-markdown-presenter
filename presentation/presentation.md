@@ -1,7 +1,16 @@
-#hi
+# hi
+
+<!--codeExample: code.less-->
 
 ---
 
-#sam
+#slide 2
 
-codeExample: code.less
+<!--codeExample: code.less-->
+
+----
+
+#slide 3
+
+<!--codeExample: code.less-->
+

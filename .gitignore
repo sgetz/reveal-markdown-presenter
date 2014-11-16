@@ -27,5 +27,6 @@ node_modules
 # Users Environment Variables
 .lock-wscript
 
-#SAM: ignore .tmp dir
+#SAM: ignore dirs
 .tmp
+bower_components

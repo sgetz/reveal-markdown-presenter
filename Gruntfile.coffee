@@ -15,12 +15,16 @@ gruntFunction = (grunt) ->
   tmpdir = '.tmp'
 
   md2RevHtml =
-    options:
-      src: '<%= pesfile %>'
-      templatefile: '<%= srcdir %>/index.tpl.html'
-      replacestr: '<!-- INSERT SLIDES HERE -->'
-      dest: '<%= tmpdir %>/presentation.html'
-      example_code_path: '<%= curdir %>/<%= presdir %>/example-code'
+    presentation:
+      files:
+        '<%= tmpdir %>/presentation.html': '<%= pesfile %>'
+      options:
+        presentationTemplate: '<%= curdir %>/tasks/reveal-js.tpl.html'
+        searchPath: '<%= curdir %>/<%= presdir %>/example-code'
+        preprocessors:
+          'codeExample: ?([A-Za-z0-9]+\\.([A-Za-z]+))': (match, filename, fileext, other..., readFileFn) ->
+            fileContent = readFileFn(filename)
+            return """```#{fileext}\n#{fileContent}\n```"""
 
   ###Grunt Copy Config###
   copy = {
@@ -47,19 +51,25 @@ gruntFunction = (grunt) ->
   ###Grunt Less Config###
   less = {
     presentation_sample_less:
-      files:
+      options:
+        paths: ['<%= presdir %>/example-code']
+      files: [{
         expand: true
         cwd: '<%= presdir %>/example-code'
         src: ['*.less']
         dest: '<%= presdir %>/example-code'
         ext: '.css'
+      }]
     presentation_styles:
-      files:
+      options:
+        paths: ['<%= presdir %>', '<%= bowerdir %>']
+      files: [{
         expand: true
         cwd: '<%= presdir %>'
         src: ['styles.less']
         dest: '<%= tmpdir %>'
         ext: '.css'
+      }]
   }
 
   ###Grunt Connect Config###
@@ -72,6 +82,13 @@ gruntFunction = (grunt) ->
       options:
         base: ['<%= tmpdir %>']
         livereload: true
+        middleware: (connect, options) ->
+          options.base = [options.base] if not Array.isArray(options.base)
+          middlewares = []
+          for base in options.base
+            middlewares.push connect.static(base)
+          middlewares
+
   }
 
   ###Grunt Watch Config###
@@ -80,7 +97,11 @@ gruntFunction = (grunt) ->
       livereload: true
     less:
       files: ['<%= presdir %>/**/*.less']
-      tasks: ['less', ]
+      tasks: ['less', 'md2RevHtml']
+    md:
+      files: ['<%= presdir %>/**/*.md']
+      tasks: ['less', 'md2RevHtml']
+
 
   }
 
