@@ -1,0 +1,19 @@
+{
+  "name": "reveal-markdown-presenter",
+  "version": "0.0.0",
+  "homepage": "https://github.com/sgetz/reveal-markdown-presenter",
+  "authors": [
+    "Shalom Getz <shalom.getz@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "src/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+  }
+}
