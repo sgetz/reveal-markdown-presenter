@@ -34,10 +34,10 @@ gruntFunction = (grunt) ->
         presentationTemplate: '<%= curdir %>/tasks/reveal-js.tpl.html'
         searchPath: '<%= curdir %>/<%= presdir %>/example-code'
         preprocessors:
-          'codeExample: ?([A-Za-z0-9]+\\.([A-Za-z]+))': (match, filename, fileext, other..., readFileFn) ->
+          'codeExample: ?([A-Za-z0-9\\-\\_]+\\.([A-Za-z]+))': (match, filename, fileext, other..., readFileFn) ->
             fileContent = readFileFn(filename)
             return """```#{fileext}\n#{fileContent}\n```"""
-          'codeExampleSideBySide: ?([A-Za-z0-9]+\\.([A-Za-z]+)) ?\\| ?([A-Za-z0-9]+\\.([A-Za-z]+))': (match, fileOneName, fileOneExt, fileTwoName, fileTwoExt, other..., readFileFn) ->
+          'codeExampleSideBySide: ?([A-Za-z0-9\\-\\_]+\\.([A-Za-z]+)) ?\\| ?([A-Za-z0-9\\-\\_]+\\.([A-Za-z]+))': (match, fileOneName, fileOneExt, fileTwoName, fileTwoExt, other..., readFileFn) ->
             fileOneContent = readFileFn(fileOneName)
             fileTwoContent = readFileFn(fileTwoName)
             fileOneContentAsMarkdown = """```#{fileOneExt}\n#{fileOneContent}\n```"""
