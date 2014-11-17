@@ -55,11 +55,6 @@ gruntFunction = (grunt) ->
 
   ###Grunt Copy Config###
   copy = {
-    index_html:
-      src: '<%= srcdir %>/index.tpl.html'
-      dest: '<%= tmpdir %>/index.html'
-      options:
-        processContent: (content, srcpath) -> grunt.template.process(content)
     bower_components:
       expand: true
       cwd: '<%= bowerdir %>/'
@@ -128,6 +123,10 @@ gruntFunction = (grunt) ->
     md:
       files: ['<%= presdir %>/**/*.md']
       tasks: ['less', 'md2RevHtml']
+    images:
+      #TODO: Fix - not working?
+      files: ['<%= presdir %>/images/*'],
+      task: ['copy:presentation_images']
 
 
   }
