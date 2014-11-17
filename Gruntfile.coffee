@@ -42,14 +42,16 @@ gruntFunction = (grunt) ->
             fileTwoContent = readFileFn(fileTwoName)
             fileOneContentAsMarkdown = """```#{fileOneExt}\n#{fileOneContent}\n```"""
             fileTwoContentAsMarkdown = """```#{fileTwoExt}\n#{fileTwoContent}\n```"""
-            console.dir fileOneContentAsMarkdown
-            console.dir fileTwoContentAsMarkdown
             fileOneContentAsHtml = marked(fileOneContentAsMarkdown)
             fileTwoContentAsHtml = marked(fileTwoContentAsMarkdown)
             return """<div class="side-by-side-code">
               <div class="left-code">#{fileOneContentAsHtml}</div>
               <div class="right-code">#{fileTwoContentAsHtml}</div>
             </div>"""
+
+  clean = {
+    tmp: ['<%= tmpdir %>']
+  }
 
   ###Grunt Copy Config###
   copy = {
@@ -139,6 +141,7 @@ gruntFunction = (grunt) ->
     srcdir
     tmpdir
     md2RevHtml
+    clean
     copy
     connect
     coffee
@@ -148,6 +151,8 @@ gruntFunction = (grunt) ->
 
   ###Register Default Grunt Task###
   grunt.registerTask 'default', [
+    'clean'
+    'md2RevHtml'
     'less'
     'copy'
     'connect:dev'
