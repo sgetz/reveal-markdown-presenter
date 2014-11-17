@@ -1,16 +1,15 @@
-# hi
+# hi Sam
 
 <!--codeExample: code.less-->
 
 ---
 
-#slide 2
+#slide 2.2
 
 <!--codeExample: code.less-->
 
 ----
 
-#slide 3
+#slide 3.4
 
-<!--codeExample: code.less-->
-
+<!--codeExampleSideBySide: code.less|code.css-->

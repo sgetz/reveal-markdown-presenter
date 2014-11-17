@@ -6,6 +6,18 @@ gruntFunction = (grunt) ->
   require('./tasks/md2revhtml')(grunt)
   require('load-grunt-tasks')(grunt)
 
+  marked = require('marked')
+  marked.setOptions({
+    renderer: new marked.Renderer(),
+    gfm: true,
+    tables: true,
+    breaks: false,
+    pedantic: false,
+    sanitize: true,
+    smartLists: true,
+    smartypants: false
+  })
+
   ###Path###
   presdir = 'presentation'
   curdir = __dirname
@@ -25,6 +37,19 @@ gruntFunction = (grunt) ->
           'codeExample: ?([A-Za-z0-9]+\\.([A-Za-z]+))': (match, filename, fileext, other..., readFileFn) ->
             fileContent = readFileFn(filename)
             return """```#{fileext}\n#{fileContent}\n```"""
+          'codeExampleSideBySide: ?([A-Za-z0-9]+\\.([A-Za-z]+)) ?\\| ?([A-Za-z0-9]+\\.([A-Za-z]+))': (match, fileOneName, fileOneExt, fileTwoName, fileTwoExt, other..., readFileFn) ->
+            fileOneContent = readFileFn(fileOneName)
+            fileTwoContent = readFileFn(fileTwoName)
+            fileOneContentAsMarkdown = """```#{fileOneExt}\n#{fileOneContent}\n```"""
+            fileTwoContentAsMarkdown = """```#{fileTwoExt}\n#{fileTwoContent}\n```"""
+            console.dir fileOneContentAsMarkdown
+            console.dir fileTwoContentAsMarkdown
+            fileOneContentAsHtml = marked(fileOneContentAsMarkdown)
+            fileTwoContentAsHtml = marked(fileTwoContentAsMarkdown)
+            return """<div class="side-by-side-code">
+              <div class="left-code">#{fileOneContentAsHtml}</div>
+              <div class="right-code">#{fileTwoContentAsHtml}</div>
+            </div>"""
 
   ###Grunt Copy Config###
   copy = {
