@@ -1,0 +1,12 @@
+.side-bar {
+  border-width: 10px;
+}
+.side-bar .comments .user-handle {
+  border-width: 40px;
+}
+.test-mixing {
+  border-width: 10px;
+}
+.test-mixing .comments .user-handle {
+  border-width: 40px;
+}

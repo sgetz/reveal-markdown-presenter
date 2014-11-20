@@ -1,0 +1,13 @@
+@content-width: 20px;
+
+// Parametric Mixins Expose Vars
+.mixin() {
+  @content-width: 40px;
+}
+
+//Cant Overide Locals
+.class-two {
+  @content-width: 50px;
+  width: @content-width;
+  .mixin();
+}

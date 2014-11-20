@@ -1,0 +1,12 @@
+.size(@width; @height) {
+  width: @width;
+  height: @height;
+}
+
+.square(@size) {
+  .size(@size; @size);
+}
+
+.box {
+  .square(10px);
+}

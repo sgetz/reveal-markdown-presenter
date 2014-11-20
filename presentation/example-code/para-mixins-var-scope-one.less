@@ -1,0 +1,12 @@
+@content-width: 20px;
+
+// Parametric Mixins Expose Vars
+.mixin() {
+  @content-width: 40px;
+}
+
+// Can Override parent Scope Vars
+.class-one {
+  width: @content-width;
+  .mixin();
+}

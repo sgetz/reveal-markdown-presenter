@@ -1,0 +1,16 @@
+.mixin(@color) when (lightness(@color) >= 50) {
+  color: darken(@color, 25%);
+}
+.mixin(@color) when (lightness(@color) < 50) {
+  color: lighten(@color, 25%);
+}
+
+.class-1 {
+  // lightness(pink) -> 87.64705882%
+  .mixin(pink);
+}
+.class-2 {
+  // lightness(brown) -> 40.58823529%
+  .mixin(brown);
+}
+

@@ -1,0 +1,24 @@
+.demo {
+  .mixin(@color) when (lightness(@color) >= 50) {
+    color: darken(@color, 25%);
+  }
+  .mixin(@color) when (lightness(@color) < 50) {
+    color: lighten(@color, 25%);
+  }
+
+  .pmg-demo-one {
+    color: pink
+  }
+  .pmg-demo-one-changed {
+    // lightness(87.64705882%) -> 40.58823529%
+    .mixin(pink);
+  }
+
+  .pmg-demo-two {
+    color: brown
+  }
+  .pmg-demo-two-changed {
+    // lightness(brown) -> 40.58823529%
+    .mixin(brown);
+  }
+}

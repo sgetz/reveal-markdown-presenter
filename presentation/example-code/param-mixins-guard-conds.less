@@ -1,0 +1,15 @@
+.mx(@color; @sz; @force: false) when
+  (@color = red) and (@sz > 10px),
+  (@force = true) {
+  font-size: 115%;
+}
+
+.class-1 {
+  .mx(red; 11px; false);
+}
+.class-2 {
+  .mx(blue; 11px);
+}
+.class-3 {
+  .mx(blue; 11px; true);
+}

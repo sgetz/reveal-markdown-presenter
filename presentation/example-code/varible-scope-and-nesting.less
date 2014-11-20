@@ -1,0 +1,17 @@
+@wide-border: 10px;
+
+.side-bar {
+  border-width: @wide-border;
+  .comments {
+    @wide-border: 40px;
+    .user-handle {
+      border-width: @wide-border;
+    }
+  }
+}
+
+
+.test-mixing {
+  @wide-border: 35px;
+  .side-bar;
+}

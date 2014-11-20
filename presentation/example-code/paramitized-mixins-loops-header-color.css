@@ -1,0 +1,32 @@
+.demo.header-loop h8 {
+  font-size: -10px;
+  color: #000000;
+}
+.demo.header-loop h7 {
+  font-size: 0px;
+  color: #000000;
+}
+.demo.header-loop h6 {
+  font-size: 10px;
+  color: #000000;
+}
+.demo.header-loop h5 {
+  font-size: 20px;
+  color: #333300;
+}
+.demo.header-loop h4 {
+  font-size: 30px;
+  color: #666600;
+}
+.demo.header-loop h3 {
+  font-size: 40px;
+  color: #999900;
+}
+.demo.header-loop h2 {
+  font-size: 50px;
+  color: #cccc00;
+}
+.demo.header-loop h1 {
+  font-size: 60px;
+  color: #ffff00;
+}

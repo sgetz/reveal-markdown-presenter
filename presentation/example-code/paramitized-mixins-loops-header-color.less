@@ -1,0 +1,14 @@
+.size-headers(@level, @h1-size:40px, @h1-color:white, @delta:-5px) when (@level > 0) {
+
+  h@{level} {
+    @dif: ((@level - 1) * @delta);
+    font-size: @h1-size + @dif;
+    @darken-percent: 10% * (@level - 1);
+    color: darken(@h1-color, @darken-percent);
+  }
+  .size-headers(@level  - 1, @h1-size, @h1-color, @delta)
+}
+
+.demo.header-loop {
+  .size-headers(8, 60px, yellow, -10px);
+}

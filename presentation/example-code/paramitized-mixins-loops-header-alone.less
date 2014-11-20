@@ -1,0 +1,10 @@
+.size-headers(@level, @h1-size:40px, @delta:-5px) when (@level > 0) {
+
+  h@{level} {
+    @dif: ((@level - 1) * @delta);
+    font-size: @h1-size + @dif;
+  }
+  .size-headers(@level  - 1, @h1-size, @delta)
+}
+
+.size-headers(8, 16px, -2px);
